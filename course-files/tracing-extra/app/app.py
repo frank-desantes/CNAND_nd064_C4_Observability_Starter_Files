@@ -47,7 +47,7 @@ def hello_world():
 @app.route("/alpha")
 def alpha():
     for i in range(100):
-        do_heavy_work()  # removed the colon here since it caused a syntax error - not sure about its purpose?
+        #do_heavy_work()  # removed the colon here since it caused a syntax error - not sure about its purpose?
         if i % 100 == 99:
             time.sleep(10)
     return "This is the Alpha Endpoint!"
