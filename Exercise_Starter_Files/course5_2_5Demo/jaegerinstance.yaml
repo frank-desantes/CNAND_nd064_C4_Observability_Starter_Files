@@ -1,0 +1,12 @@
+apiVersion: jaegertracing.io/v1
+kind: Jaeger
+metadata:
+  name: jaegerinstance
+  namespace: course5
+spec:
+  strategy: allInOne
+  ingress:
+    enabled: true
+  storage:
+    type: memory
+
