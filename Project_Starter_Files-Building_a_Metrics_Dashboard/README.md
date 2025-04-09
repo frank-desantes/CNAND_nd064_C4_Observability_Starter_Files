@@ -3,7 +3,7 @@
 ## 1. Verify the monitoring installation
 
 run `kubectl` command to show the running pods and services for all components. Take a screenshot of the output and include it here to verify the installation
-![pods,svc](./answer-img/1_pods_svc.png)
+![pods,svc](./answer-img/1_pods_svc.PNG)
 
 ## Setup the Jaeger and Prometheus source
 *TODO:* Expose Grafana to the internet and then setup Prometheus as a data source. Provide a screenshot of the home page after logging into Grafana.
