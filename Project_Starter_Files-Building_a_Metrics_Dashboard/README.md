@@ -2,22 +2,43 @@
 
 ## 1. Verify the monitoring installation
 
-run `kubectl` command to show the running pods and services for all components. Take a screenshot of the output and include it here to verify the installation
+run `kubectl` command to show the running pods and services for all components. Take a screenshot of the output and include it here to verify the installation.
+
 ![running pods and services](./answer-img/1_pods_svc.PNG)
+
 
 ## 2. Setup the Jaeger and Prometheus source
 Expose Grafana to the internet and then setup Prometheus as a data source. Provide a screenshot of the home page after logging into Grafana.
+
 ![home page after logging into Grafana](./answer-img/2_grafana.PNG)
+
 
 ## 3. Create a Basic Dashboard
 Create a dashboard in Grafana that shows Prometheus as a source. Take a screenshot and include it here.
+
 ![Dashboard with Prometheus as a source](./answer-img/3_prometheus_dashboard.PNG)
 
-## Describe SLO/SLI
-*TODO:* Describe, in your own words, what the SLIs are, based on an SLO of *monthly uptime* and *request response time*.
 
-## Creating SLI metrics.
-*TODO:* It is important to know why we want to measure certain metrics for our customer. Describe in detail 5 metrics to measure these SLIs. 
+## 4. Describe SLO/SLI
+Describe, in your own words, what the SLIs are, based on an SLO of *monthly uptime* and *request response time*.
+
+The Service-Level Objective *monthly uptime* is the customer-centric and measurable goal e.g.(monthly uptime = 95%). With the Service-Level Indicator *uptime* (actually measured) we can than see, if we reached the goal at every end of the month.
+
+The Service-Level Objective *request response time* is the customer-centric and measurable goal e.g.(request response time < 400ms). With the Service-Level Indicator *response time* (actually measured) we can than see, if we reached the goal for every request.
+
+
+## 5. Creating SLI metrics.
+It is important to know why we want to measure certain metrics for our customer. Describe in detail 5 metrics to measure these SLIs. 
+
+- Latency – Measures the time taken for a system to respond to a request. Lower latency indicates faster response times, which is crucial for user experience.
+
+- Availability – Represents the percentage of time a service is operational and accessible. High availability ensures minimal downtime and better reliability.
+
+- Error Rate – Tracks the proportion of failed requests compared to total requests. A lower error rate signifies a more stable and dependable system.
+
+- Throughput – Measures the number of successful transactions or requests processed per unit of time. Higher throughput indicates better system efficiency.
+
+- Durability – Relevant for storage systems, durability ensures that data remains intact and retrievable over time, preventing loss or corruption.
 
 ## Create a Dashboard to measure our SLIs
 *TODO:* Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
