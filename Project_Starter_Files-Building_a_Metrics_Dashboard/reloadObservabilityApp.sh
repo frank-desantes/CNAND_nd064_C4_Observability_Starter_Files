@@ -1,2 +1,2 @@
-./deleteObservabilityApp.sh
-./applyObservabilityApp.sh
+/vagrant/deleteObservabilityApp.sh
+/vagrant/applyObservabilityApp.sh

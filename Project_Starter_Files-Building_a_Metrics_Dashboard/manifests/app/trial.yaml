@@ -40,15 +40,15 @@ metadata:
   name: trial-monitor
   namespace: monitoring
   labels:
-    release: prometheus  # must match Helm release label
+    release: prometheus       # must match Helm release label
 spec:
   selector:
     matchLabels:
-      app: trial          # must match labels on the *Service*
+      app: trial              # must match labels on the *Service*
   namespaceSelector:
     matchNames:
       - default
   endpoints:
-    - port: trial         # must match the named port in the *Service*
+    - port: trial             # must match the named port in the *Service*
       path: /metrics
       interval: 15s

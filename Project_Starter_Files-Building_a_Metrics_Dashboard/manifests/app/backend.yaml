@@ -29,9 +29,9 @@ spec:
   selector:
     app: backend
   ports:
-    - name: backend
-      port: 8081
+    - port: 8081
       targetPort: 8080
+      name: backend
   type: LoadBalancer
 ---
 apiVersion: monitoring.coreos.com/v1
@@ -40,15 +40,15 @@ metadata:
   name: backend-monitor
   namespace: monitoring
   labels:
-    release: prometheus  # must match Helm release label
+    release: prometheus       # must match Helm release label
 spec:
   selector:
     matchLabels:
-      app: backend          # must match labels on the *Service*
+      app: backend            # must match labels on the *Service*
   namespaceSelector:
     matchNames:
       - default
   endpoints:
-    - port: backend         # must match the named port in the *Service*
+    - port: backend           # must match the named port in the *Service*
       path: /metrics
       interval: 15s
