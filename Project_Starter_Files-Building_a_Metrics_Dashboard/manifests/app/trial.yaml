@@ -15,7 +15,7 @@ spec:
       containers:
       - name: trial
         # We advise you to build, push and use your own image, instead of using instructor's image.
-        image: ghcr.io/jasonsmithio/trial:v1
+        image: frankdesantes/trial:latest
         ports:
         - containerPort: 8080
 ---
@@ -27,6 +27,26 @@ spec:
   selector:
     app: trial
   ports:
-    - port: 8082
+    - name: service-port
+      port: 8082
       targetPort: 8080
   type: LoadBalancer
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: trial-monitor
+  #namespace: monitoring
+  labels:
+    release: prometheus  # must match Helm release label
+spec:
+  selector:
+    matchLabels:
+      app: trial          # must match labels on the *Service*
+  namespaceSelector:
+    matchNames:
+      - default
+  endpoints:
+    - port: service-port         # must match the named port in the *Service*
+      path: /metrics
+      interval: 15s

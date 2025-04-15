@@ -1,0 +1,2 @@
+./deleteObservabilityApp.sh
+./applyObservabilityApp.sh

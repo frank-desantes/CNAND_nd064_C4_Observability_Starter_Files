@@ -2,13 +2,19 @@ from flask import Flask, render_template, request, jsonify
 
 import pymongo
 from flask_pymongo import PyMongo
+from flask_cors import CORS
+from prometheus_flask_exporter import PrometheusMetrics
 
 app = Flask(__name__)
+
+metrics = PrometheusMetrics(app)
 
 app.config["MONGO_DBNAME"] = "example-mongodb"
 app.config[
     "MONGO_URI"
 ] = "mongodb://example-mongodb-svc.default.svc.cluster.local:27017/example-mongodb"
+
+CORS(app)  # Set CORS for development
 
 mongo = PyMongo(app)
 

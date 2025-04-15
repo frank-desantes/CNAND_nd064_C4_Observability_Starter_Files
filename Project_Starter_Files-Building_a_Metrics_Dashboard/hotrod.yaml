@@ -1,0 +1,63 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hotrod
+  labels:
+    app: hotrod
+spec:
+  selector:
+    matchLabels:
+      app: hotrod
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: hotrod
+        tier: frontend      
+    spec:
+      containers:
+      - image: jaegertracing/example-hotrod:latest
+        name: hotrod
+        env:
+        - name: JAEGER_AGENT_HOST
+          value: jaeger
+        - name: JAEGER_AGENT_PORT
+          value: '6831'
+        ports:
+        - containerPort: 8083
+          name: hotrod
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hotrod
+  labels:
+    app: hotrod
+spec:
+  ports:
+    - port: 8083
+#      name: hotrod
+  selector:
+    app: hotrod
+    tier: frontend
+  type: LoadBalancer
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: hotrod-monitor
+  namespace: monitoring
+  labels:
+    release: prometheus  # must match Helm release label
+spec:
+  selector:
+    matchLabels:
+      app: hotrod          # must match labels on the *Service*
+  namespaceSelector:
+    matchNames:
+      - default
+  endpoints:
+    - port: hotrod         # must match the named port in the *Service*
+      path: /metrics
+      interval: 15s

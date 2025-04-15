@@ -22,9 +22,9 @@ Create a dashboard in Grafana that shows Prometheus as a source. Take a screensh
 ## 4. Describe SLO/SLI
 Describe, in your own words, what the SLIs are, based on an SLO of *monthly uptime* and *request response time*.
 
-The Service-Level Objective *monthly uptime* is the customer-centric and measurable goal e.g.(monthly uptime = 95%). With the Service-Level Indicator *uptime* (actually measured) we can than see, if we reached the goal at every end of the month.
+- The Service-Level Objective *monthly uptime* is the customer-centric and measurable goal e.g.(monthly uptime = 95%). With the Service-Level Indicator *uptime* (actually measured) we can than see, if we reached the goal at every end of the month.
 
-The Service-Level Objective *request response time* is the customer-centric and measurable goal e.g.(request response time < 400ms). With the Service-Level Indicator *response time* (actually measured) we can than see, if we reached the goal for every request.
+- The Service-Level Objective *request response time* is the customer-centric and measurable goal e.g.(request response time < 400ms). With the Service-Level Indicator *response time* (actually measured) we can than see, if we reached the goal for every request.
 
 
 ## 5. Creating SLI metrics.
@@ -40,7 +40,7 @@ It is important to know why we want to measure certain metrics for our customer.
 
 - Durability – Relevant for storage systems, durability ensures that data remains intact and retrievable over time, preventing loss or corruption.
 
-## Create a Dashboard to measure our SLIs
+## 6. Create a Dashboard to measure our SLIs
 *TODO:* Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
 
 ## Tracing our Flask App

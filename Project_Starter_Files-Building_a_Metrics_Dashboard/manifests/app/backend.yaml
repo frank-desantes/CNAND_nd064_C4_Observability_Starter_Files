@@ -15,7 +15,7 @@ spec:
       containers:
       - name: backend
         # We advise you to build, push and use your own image, instead of using instructor's image.      
-        image: ghcr.io/jasonsmithio/backend:v1
+        image: frankdesantes/backend:latest
         ports:
         - containerPort: 8081
 ---
@@ -27,6 +27,26 @@ spec:
   selector:
     app: backend
   ports:
-    - port: 8081
+    - name: service-port
+      port: 8081
       targetPort: 8080
   type: LoadBalancer
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: backend-monitor
+  #namespace: monitoring
+  labels:
+    release: prometheus  # must match Helm release label
+spec:
+  selector:
+    matchLabels:
+      app: backend          # must match labels on the *Service*
+  namespaceSelector:
+    matchNames:
+      - default
+  endpoints:
+    - port: service-port         # must match the named port in the *Service*
+      path: /metrics
+      interval: 15s
