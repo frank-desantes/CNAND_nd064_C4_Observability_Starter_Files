@@ -23,20 +23,22 @@ apiVersion: v1
 kind: Service
 metadata:
   name: trial-service
+  labels:
+    app: trial
 spec:
   selector:
     app: trial
   ports:
-    - name: service-port
-      port: 8082
+    - port: 8082
       targetPort: 8080
+      name: trial
   type: LoadBalancer
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: trial-monitor
-  #namespace: monitoring
+  namespace: monitoring
   labels:
     release: prometheus  # must match Helm release label
 spec:
@@ -47,6 +49,6 @@ spec:
     matchNames:
       - default
   endpoints:
-    - port: service-port         # must match the named port in the *Service*
+    - port: trial         # must match the named port in the *Service*
       path: /metrics
       interval: 15s
