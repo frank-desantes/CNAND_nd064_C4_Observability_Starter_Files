@@ -6,21 +6,23 @@ app = Flask(__name__)
 
 metrics = PrometheusMetrics(app)
 
-# Define a Prometheus counter to track HTTP status codes
-#HTTP_STATUS_CODES = Counter('http_status_codes', 'HTTP status codes returned by the Flask app', ['status_code'])
+# Track HTTP status codes
+metrics.counter(
+    'http_status_codes',
+    'Count of HTTP status codes',
+    labels={'status': lambda r: r.status_code}
+)
 
-# @app.after_request
-# def track_status_code(response):
-#     # Increment the counter for the status code of the response
-#     #print("Increment the counter for the status code of the response")
-#     HTTP_STATUS_CODES.labels(status_code=response.status_code).inc()
-#     return response
-
-# @app.route('/metrics')
-# def metrics():
-#     # Expose metrics for Prometheus
-#     #print("Expose metrics for Prometheus")
-#     return Response(generate_latest(), mimetype='text/plain')
+@app.after_request
+def track_errors(response):
+    if 400 <= response.status_code < 600:
+        # Increment custom metric for errors
+        metrics.counter(
+            'http_error_codes',
+            'Count of HTTP error codes',
+            labels={'status': response.status_code}
+        )
+    return response
 
 @app.route("/")
 def homepage():

@@ -18,6 +18,23 @@ CORS(app)  # Set CORS for development
 
 mongo = PyMongo(app)
 
+# Track HTTP status codes
+metrics.counter(
+    'http_status_codes',
+    'Count of HTTP status codes',
+    labels={'status': lambda r: r.status_code}
+)
+
+@app.after_request
+def track_errors(response):
+    if 400 <= response.status_code < 600:
+        # Increment custom metric for errors
+        metrics.counter(
+            'http_error_codes',
+            'Count of HTTP error codes',
+            labels={'status': response.status_code}
+        )
+    return response
 
 @app.route("/")
 def homepage():
