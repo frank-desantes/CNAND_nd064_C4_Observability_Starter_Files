@@ -58,17 +58,18 @@ It is important to know why we want to measure certain metrics for our customer.
 
 TROUBLE TICKET
 
-Name:
+Name: Frank Pohlen
 
-Date:
+Date: 17.4.2025
 
-Subject:
+Subject: trial app
 
-Affected Area:
+Affected Area: Homepage "/"
 
-Severity:
+Severity: high (no function at all)
 
-Description:
+Description: accessing the trial app (localhost:8082) leads to an "Internal Server Error" (500). Accessing a trace (localhost:8082/trace) shows an error Log in jaeger (see picture). The error is located in referenced-app/trial/app.py. A link ""https://jobs.github.com/positions.json?description=python" does not work.
+![Jaeger Error trace for trial](./answer-img/9_Trial_Error.PNG)
 
 
 ## Creating SLIs and SLOs
