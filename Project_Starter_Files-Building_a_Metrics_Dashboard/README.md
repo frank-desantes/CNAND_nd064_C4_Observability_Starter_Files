@@ -44,16 +44,16 @@ It is important to know why we want to measure certain metrics for our customer.
 *TODO:* Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
 ![Dashboard with uptime in % and 4xx, 5xx http status error codes](./answer-img/6_front_back_upt_error.PNG)
 
-## Tracing our Flask App
+## 7. Tracing our Flask App
 *TODO:*  We will create a Jaeger span to measure the processes on the backend. Once you fill in the span, provide a screenshot of it here. Also provide a (screenshot) sample Python file containing a trace and span code used to perform Jaeger traces on the backend service.
 ![Jaeger Span](./answer-img/7_Jaeger_Span.PNG)
 ![Jaeger Span Code](./answer-img/7_Jaeger_Span_PyCode.PNG)
 
-## Jaeger in Dashboards
+## 8. Jaeger in Dashboards
 *TODO:* Now that the trace is running, let's add the metric to our current Grafana dashboard. Once this is completed, provide a screenshot of it here.
 ![Jaeger Panel in Grafana](./answer-img/8_Jaeger_Panel.PNG)
 
-## Report Error
+## 9. Report Error
 *TODO:* Using the template below, write a trouble ticket for the developers, to explain the errors that you are seeing (400, 500, latency) and to let them know the file that is causing the issue also include a screenshot of the tracer span to demonstrate how we can user a tracer to locate errors easily.
 
 TROUBLE TICKET
@@ -72,13 +72,13 @@ Description: accessing the trial app (localhost:8082) leads to an "Internal Serv
 ![Jaeger Error trace for trial](./answer-img/9_Trial_Error.PNG)
 
 
-## Creating SLIs and SLOs
+## 10. Creating SLIs and SLOs
 *TODO:* We want to create an SLO guaranteeing that our application has a 99.95% uptime per month. Name four SLIs that you would use to measure the success of this SLO.
 
 Latency, Availability, Error Rate and Throughput.
 
 
-## Building KPIs for our plan
+## 11. Building KPIs for our plan
 *TODO*: Now that we have our SLIs and SLOs, create a list of 2-3 KPIs to accurately measure these metrics as well as a description of why those KPIs were chosen. We will make a dashboard for this, but first write them down here.
 
 Latency
@@ -91,5 +91,16 @@ Error Rate
 Here we can define a max error rate to also define when the application is "not up"
 
 
-## Final Dashboard
-*TODO*: Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what graphs are represented in the dashboard.  
+## 12. Final Dashboard
+*TODO*: Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what graphs are represented in the dashboard. 
+![Dashboard with all KPIs](./answer-img/12_Dashboard_all_KPIs.PNG)
+
+
+# average latency off all flask http requests
+shows the latency of all parts of the application with tresholds to easy find the problematic times.
+
+# uptime of frontend-, backend- and trial-app
+shows the uptime in % for all parts of the application
+
+# flask http error rate
+shows the overall error rate of all flask http requests for all parts of the application 
