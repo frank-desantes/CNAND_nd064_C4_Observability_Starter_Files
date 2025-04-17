@@ -46,6 +46,8 @@ It is important to know why we want to measure certain metrics for our customer.
 
 ## Tracing our Flask App
 *TODO:*  We will create a Jaeger span to measure the processes on the backend. Once you fill in the span, provide a screenshot of it here. Also provide a (screenshot) sample Python file containing a trace and span code used to perform Jaeger traces on the backend service.
+![Jaeger Span](./answer-img/7_Jaeger_Span.PNG)
+![Jaeger Span Code](./answer-img/7_Jaeger_Span_PyCode.PNG)
 
 ## Jaeger in Dashboards
 *TODO:* Now that the trace is running, let's add the metric to our current Grafana dashboard. Once this is completed, provide a screenshot of it here.
