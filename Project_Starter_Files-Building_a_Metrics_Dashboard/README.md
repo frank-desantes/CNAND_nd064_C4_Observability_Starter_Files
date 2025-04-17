@@ -75,8 +75,21 @@ Description: accessing the trial app (localhost:8082) leads to an "Internal Serv
 ## Creating SLIs and SLOs
 *TODO:* We want to create an SLO guaranteeing that our application has a 99.95% uptime per month. Name four SLIs that you would use to measure the success of this SLO.
 
+Latency, Availability, Error Rate and Throughput.
+
+
 ## Building KPIs for our plan
 *TODO*: Now that we have our SLIs and SLOs, create a list of 2-3 KPIs to accurately measure these metrics as well as a description of why those KPIs were chosen. We will make a dashboard for this, but first write them down here.
+
+Latency
+This will define a responstime where the customer is not satisfyied and therefore counts as "not up".
+
+Availability
+This is the uptime for the application. The time this application is accessible.
+
+Error Rate
+Here we can define a max error rate to also define when the application is "not up"
+
 
 ## Final Dashboard
 *TODO*: Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what graphs are represented in the dashboard.  
