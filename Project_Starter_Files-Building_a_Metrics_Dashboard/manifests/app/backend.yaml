@@ -2,22 +2,36 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-app
+  labels: 
+    app: backend
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: backend
+      tier: backend
   template:
     metadata:
       labels:
         app: backend
+        tier: backend
+      annotations:
+        sidecar.istio.io/inject: "true"    
     spec:
       containers:
       - name: backend
         # We advise you to build, push and use your own image, instead of using instructor's image.      
         image: frankdesantes/backend:latest
+        env:
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: "http://jaeger-collector.observability.svc.cluster.local:4318"
+        - name: OTEL_EXPORTER_OTLP_INSECURE
+          value: "true" 
         ports:
-        - containerPort: 8081
+        - containerPort: 8080
+          name: backend
 ---
 apiVersion: v1
 kind: Service
@@ -28,6 +42,7 @@ metadata:
 spec:
   selector:
     app: backend
+    tier: backend
   ports:
     - port: 8081
       targetPort: 8080

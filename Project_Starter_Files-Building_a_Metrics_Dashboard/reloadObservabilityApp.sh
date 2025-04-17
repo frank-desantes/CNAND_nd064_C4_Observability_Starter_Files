@@ -1,2 +1,3 @@
-/vagrant/deleteObservabilityApp.sh
-/vagrant/applyObservabilityApp.sh
+#!/bin/bash
+./deleteObservabilityApp.sh
+./applyObservabilityApp.sh

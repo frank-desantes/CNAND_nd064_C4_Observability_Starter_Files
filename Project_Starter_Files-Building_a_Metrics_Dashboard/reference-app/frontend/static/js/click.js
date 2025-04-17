@@ -4,7 +4,7 @@ $(document).ready(function () {
     $("#firstbutton").click(function () {
         $.ajax({
             // url: "http://backend-service.default.svc.cluster.local", success: function (result) {
-            url: "http://localhost:8081", success: function (result) {
+            url: "http://localhost:8081/api", success: function (result) {
                 $("#firstbutton").toggleClass("btn-primary:focus");
                 }
         });

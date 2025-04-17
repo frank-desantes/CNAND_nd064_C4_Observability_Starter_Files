@@ -4,6 +4,8 @@ metadata:
   name: hotrod
   labels:
     app: hotrod
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
 spec:
   selector:
     matchLabels:
@@ -13,16 +15,16 @@ spec:
     metadata:
       labels:
         app: hotrod
-        tier: frontend      
+        tier: frontend  
+      annotations:
+        sidecar.istio.io/inject: "true"    
     spec:
       containers:
       - image: jaegertracing/example-hotrod:latest
         name: hotrod
         env:
-        - name: JAEGER_AGENT_HOST
-          value: jaeger
-        - name: JAEGER_AGENT_PORT
-          value: '6831'
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: "http://jaeger-collector.observability.svc.cluster.local:4318"
         ports:
         - containerPort: 8080
           name: hotrod
@@ -35,8 +37,8 @@ metadata:
     app: hotrod
 spec:
   ports:
-    - port: 8080
-      name: hotrod
+    - name: hotrod
+      port: 8080
   selector:
     app: hotrod
     tier: frontend
