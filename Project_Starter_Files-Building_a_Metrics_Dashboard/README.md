@@ -96,11 +96,11 @@ Here we can define a max error rate to also define when the application is "not 
 ![Dashboard with all KPIs](./answer-img/12_Dashboard_all_KPIs.PNG)
 
 
-# average latency off all flask http requests
+### average latency off all flask http requests
 shows the latency of all parts of the application with tresholds to easy find the problematic times.
 
-# uptime of frontend-, backend- and trial-app
+### uptime of frontend-, backend- and trial-app
 shows the uptime in % for all parts of the application
 
-# flask http error rate
+### flask http error rate
 shows the overall error rate of all flask http requests for all parts of the application 
