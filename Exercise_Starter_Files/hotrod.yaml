@@ -2,37 +2,37 @@ cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: Service
 metadata:
-  name: hotrod
+  name: frontend
   labels:
-    app: hotrod
+    app: frontend
 spec:
   ports:
     - port: 8080
   selector:
-    app: hotrod
+    app: frontend
     tier: frontend
   type: LoadBalancer
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hotrod
+  name: frontend
   labels:
-    app: hotrod
+    app: frontend
 spec:
   selector:
     matchLabels:
-      app: hotrod
+      app: frontend
       tier: frontend
   template:
     metadata:
       labels:
-        app: hotrod
+        app: frontend
         tier: frontend      
     spec:
       containers:
-      - image: jaegertracing/example-hotrod:latest
-        name: hotrod
+      - image: jaegertracing/example-frontend:latest
+        name: frontend
         env:
         - name: JAEGER_AGENT_HOST
           value: jaeger
@@ -40,5 +40,5 @@ spec:
           value: '6831'
         ports:
         - containerPort: 8080
-          name: hotrod
+          name: frontend
 EOF
